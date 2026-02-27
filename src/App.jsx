@@ -1,6 +1,8 @@
 import { useState } from "react";
 import "./App.css";
 import axios from "axios";
+import { SignedIn, SignInButton, SignOutButton } from "@clerk/clerk-react";
+import { FaWhatsapp } from "react-icons/fa";
 
 function App() {
   const [query, setQuery] = useState("");
@@ -16,7 +18,7 @@ function App() {
       setChatList((prev) => [...prev, { source: "user", text: query }]);
 
       const apiRes = await axios.post(
-        "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=YOUR_API_KEY",
+        `https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent`,
         {
           contents: [
             {
@@ -26,7 +28,8 @@ function App() {
         },
         {
           headers: {
-            "x-goog-api-key": "AIzaSyC-u5n7OINijdBK32nM4VMHcYL6Iaq2L5g", "Content-Type": "application/json"
+            "x-goog-api-key": import.meta.env.VITE_GOOGLE_API_KEY,
+            "Content-Type": "application/json",
           },
         }
       );
@@ -49,24 +52,30 @@ function App() {
   return (
     <>
       <h1>Chatbot App</h1>
+      
+      <FaWhatsapp />
 
-      <form onSubmit={handleQuerySubmit}>
-        <input
-          type="text"
-          placeholder="Ask something..."
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-        />
-        <button
-          type="submit"
-          className="bg-blue-500 text-white p-2 rounded ml-2"
-        >
-          Submit
-        </button>
-      </form>
+      <SignInButton />
+      <SignOutButton />
+      <SignedIn>
+        <form onSubmit={handleQuerySubmit}>
+          <input
+            type="text"
+            placeholder="Ask something..."
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+          />
+          <button
+            type="submit"
+            className="bg-blue-500 text-white p-2 rounded ml-2"
+          >
+            Submit
+          </button>
+        </form>
+      </SignedIn>
 
-      {chatList.map((ms) => (
-        <div className={`message ${ms.source}`}>
+      {chatList.map((ms, idx) => (
+        <div key={idx} className={`message ${ms.source}`}>
           <div>{ms.text}</div>
         </div>
       ))}
