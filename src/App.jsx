@@ -3,7 +3,6 @@ import "./App.css";
 import axios from "axios";
 import { SignedIn, SignInButton, SignOutButton } from "@clerk/clerk-react";
 import { IoRestaurantSharp } from "react-icons/io5";
-
 function App() {
   const [query, setQuery] = useState("");
   const [chatList, setChatList] = useState([]);
