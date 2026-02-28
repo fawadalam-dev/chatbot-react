@@ -2,7 +2,8 @@ import { useState } from "react";
 import "./App.css";
 import axios from "axios";
 import { SignedIn, SignInButton, SignOutButton } from "@clerk/clerk-react";
-import { FaWhatsapp } from "react-icons/fa";
+import { IoRestaurantSharp } from "react-icons/io5";
+import { BiColor } from "react-icons/bi";
 
 function App() {
   const [query, setQuery] = useState("");
@@ -51,9 +52,10 @@ function App() {
 
   return (
     <>
-      <h1>Chatbot App</h1>
-      
-      <FaWhatsapp />
+      <h1>Resturent Chat Bot</h1>
+
+      <IoRestaurantSharp style={{ background: "linear-gradient(45deg, #ff6b6b, #4ecdc4)", color: "rgb(18 17 17)", fontSize: "38px", margin: "10px auto", fontSize: "90px", borderRadius: " 10px " }} />
+
 
       <SignInButton />
       <SignOutButton />
