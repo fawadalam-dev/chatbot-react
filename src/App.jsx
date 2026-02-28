@@ -69,7 +69,7 @@ function App() {
             type="submit"
             className="bg-blue-500 text-white p-2 rounded ml-2"
           >
-          Send
+            Send
           </button>
         </form>
       </SignedIn>

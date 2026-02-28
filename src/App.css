@@ -56,12 +56,14 @@ button {
   transition: all 0.3s ease;
   font-weight: 600;
 }
+
 .clerk-button,
 button:hover {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: rgb(233, 204, 204);
 
 }
+
 form {
   display: flex;
   gap: 10px;
